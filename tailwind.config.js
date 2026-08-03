@@ -12,11 +12,21 @@ export default {
 
     theme: {
         extend: {
+            colors: {
+                kosgoro: {
+                    navy: '#0B3D91',
+                    'navy-dark': '#082C6B',
+                    'navy-light': '#EFF4FC',
+                    gold: '#CA8A04',
+                    'gold-light': '#FEF3C7',
+                },
+            },
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                display: ['Lora', 'serif'],
+                sans: ['Inter', 'sans-serif'],
             },
         },
     },
 
-    plugins: [forms],
+    plugins: [require('@tailwindcss/forms')],
 };
