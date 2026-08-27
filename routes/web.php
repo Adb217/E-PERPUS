@@ -30,7 +30,6 @@ Route::get('/', function () {
             Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
             
             Route::get('/catalog', [BookController::class, 'index'])->name('catalog.index');
-            Route::get('/books/{book}', [BookController::class, 'show'])->name('books.show');
             
             Route::get('/peminjaman-saya', [MyBorrowingController::class, 'index'])->name('my-borrowings.index');
             Route::get('/rewards', [RewardController::class, 'index'])->name('rewards.index');
@@ -56,9 +55,10 @@ Route::post('/sirkulasi/condition-reports', [ConditionReportController::class, '
 // ----- Superadmin saja -----
 Route::middleware(['auth', 'verified', 'role:superadmin'])->group(function () {
     Route::get('/books/create', [BookController::class, 'create'])->name('books.create');
+    Route::get('/books/{book}', [BookController::class, 'show'])->name('books.show');
     Route::post('/books', [BookController::class, 'store'])->name('books.store');
-    Route::get('/books/{book}/edit', [BookController::class, 'edit'])->name('books.edit');
     Route::put('/books/{book}', [BookController::class, 'update'])->name('books.update');
+    Route::get('/books/{book}/edit', [BookController::class, 'edit'])->name('books.edit');
     Route::delete('/books/{book}', [BookController::class, 'destroy'])->name('books.destroy');
     Route::post('/books/{book}/copies', [BookController::class, 'addCopy'])->name('books.add-copy');
     Route::put('/copies/{copy}', [BookCopyController::class, 'update'])->name('copies.update');
